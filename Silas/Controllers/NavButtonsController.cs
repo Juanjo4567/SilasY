@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Silas.Models.Applies;
 using Silas.Models.Companies;
 using Silas.Models.Courses;
 using Silas.Models.Offers;
@@ -27,8 +28,10 @@ namespace Silas.Controllers
         [HttpGet]
         public async Task<IActionResult> OnClick(string vacio, string actionName, int superID, int cid=0)
         {
+
             switch (actionName)
             {
+             
                 case "Ofertas":
 
                     var response =await _studentService.GetOffersToStodent(superID);
@@ -169,7 +172,12 @@ namespace Silas.Controllers
                     };
                     return PartialView("NewOfferForm",newoffermodel);
 
-                default:
+                case "Mis apliques":
+                   var respons = await _studentService.ListAplliesByStudentId(superID);
+                   var modl = new AppliesToStudentsProfileViewModel()
+                    {
+                      AppliesList=respons.Applies
+                    };
                     return PartialView("StudentApplies");
             }
         }

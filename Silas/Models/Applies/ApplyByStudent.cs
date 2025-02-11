@@ -39,5 +39,9 @@ namespace Silas.Models.Applies
 
         [JsonPropertyName("applydate")]
         public DateTimeOffset ApplyDate { get; set; }
+        public List<AppliesResponseByStudents> Applies { get; set; }
+        
+
+
     }
 }
